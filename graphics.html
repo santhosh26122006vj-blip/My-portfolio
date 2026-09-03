@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- ============ THEME (applied before first paint to avoid a white/dark flash) ============ -->
+  <script>
+    (function () {
+      // Dark is the site's default look. It only stays light if the
+      // visitor previously flipped the toggle to light themselves.
+      var saved = localStorage.getItem('portfolio-theme');
+      if (saved !== 'light') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+
+  <!-- ============ META / SEO ============ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Graphics Design — Santhosh</title>
+  <meta name="description" content="Graphic design portfolio by Santhosh: logo design, Instagram posters, YouTube thumbnails and branding projects.">
+  <meta name="keywords" content="graphic design portfolio, logo design, poster design, thumbnail design, branding">
+  <meta name="author" content="Santhosh">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Graphics Design — Santhosh">
+  <meta property="og:description" content="Logo design, posters, thumbnails and branding projects.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/og-image.jpg"> <!-- Change social preview image -->
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/favicon.png"> <!-- Change favicon -->
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body data-page="graphics">
+
+  <!-- ============ PRELOADER ============ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-inner">
+      <img src="images/logo.png" alt="Logo" class="preloader-mark">
+      <p class="preloader-text">loading portfolio<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+    </div>
+  </div>
+
+  <!-- ============ SCROLL PROGRESS BAR ============ -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- ============ CUSTOM CURSOR ============ -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+
+      <a href="index.html" class="nav-logo" aria-label="Santhosh home">
+  <img src="images/logo.png" alt="Santhosh logo" class="nav-logo-img">
+</a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="graphics.html" class="nav-link active-link">Graphics Design</a>
+        <a href="video.html" class="nav-link">Video Editing</a>
+        <a href="webdev.html" class="nav-link">Web Development</a>
+        <a href="modeling.html" class="nav-link">3D Modeling</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+      <a href="index.html" class="mobile-link">Home</a>
+      <a href="graphics.html" class="mobile-link active-link">Graphics Design</a>
+      <a href="video.html" class="mobile-link">Video Editing</a>
+      <a href="webdev.html" class="mobile-link">Web Development</a>
+      <a href="modeling.html" class="mobile-link">3D Modeling</a>
+      <a href="contact.html" class="mobile-link">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ============ PAGE HERO BANNER ============ -->
+    <section class="page-hero">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="gradient-mesh"></div>
+        <div class="glass-shape shape-1"></div>
+        <div class="glass-shape shape-2"></div>
+      </div>
+      <div class="container">
+        <p class="eyebrow reveal" data-reveal>Portfolio</p>
+        <h1 class="page-title reveal" data-reveal>Graphics Designing</h1>
+        <!-- Change description -->
+        <p class="page-desc reveal" data-reveal>
+          A collection of logos, social posters, thumbnails and branding systems —
+          each one built to hold a message clearly and look sharp at any size.
+        </p>
+      </div>
+    </section>
+    <!-- ============ LOGO DESIGNS ============ -->
+    <section class="gallery-section" id="logos">
+      <div class="container">
+        <h2 class="section-title reveal" data-reveal>Logo Designs</h2>
+        <div class="gallery-grid" data-gallery>
+
+          <figure class="gallery-item reveal" data-reveal data-category="logos" data-lightbox>
+            <!-- Change project image -->
+            <img src="images\TN Travo.jpg" alt="Logo design concept one" loading="lazy">
+            <figcaption>
+              <h4>TN Travo</h4>
+              <p>A vibrant destination branding project for 'TN Travo.' The concept focuses on cultural storytelling, blending iconic regional architecture with modern travel motifs to create a logo that feels both rooted in heritage and inviting to global tourists.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item reveal" data-reveal data-category="logos" data-lightbox style="--delay:0.1s">
+            <img src="images\cross cut frames logo.jpg" alt="Logo design concept two" loading="lazy">
+            <figcaption>
+              <h4>Cross Cut</h4>
+              <p>A precision-engineered identity for 'Cross Cut Frames.' Built on a custom geometric grid, this logo utilizes film-strip aesthetics to convey technical expertise and cinematic storytelling. The design balances bold typography with industry-specific iconography for immediate brand recognition.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item reveal" data-reveal data-category="logos" data-lightbox style="--delay:0.2s">
+            <img src="images/amma.jpg" alt="Logo design concept three" loading="lazy">
+            <figcaption>
+              <h4>Amma Bhoj</h4>
+              <p>A warm, hospitality-focused identity for 'Amma Bhoj.' The design uses a circular badge layout to evoke a sense of home and community. By blending soft, hand-drawn line art with clean, modern typography, the logo communicates a perfect harmony between traditional home-cooked care and contemporary service.</p>
+            </figcaption>
+          </figure>
+
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="gallery-grid" data-gallery>
+
+          <figure class="gallery-item reveal" data-reveal data-category="logos" data-lightbox>
+            <!-- Change project image -->
+            <img src="images\Vijay Vijayam logo 1.png" alt="Logo design concept one" loading="lazy">
+            <figcaption>
+              <h4>Vijay Vijayam</h4>
+              <p>An elegant, calligraphic identity for 'Vijay Vijayam.' The design features a fluid, hand-drawn aesthetic that evokes sophistication and traditional warmth, while the integration of the floral accent adds a unique, organic touch that distinguishes the brand.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item reveal" data-reveal data-category="logos" data-lightbox style="--delay:0.1s">
+            <img src="images\harris constrection logo.jpg" alt="Logo design concept two" loading="lazy">
+            <figcaption>
+              <h4>Harris Construction</h4>
+              <p>A bold, industrial identity for 'The Harris Constructions.' The logo utilizes strong, structured typography infused with brickwork textures and architectural icons to immediately communicate stability, reliability, and precision in construction.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item reveal" data-reveal data-category="logos" data-lightbox style="--delay:0.2s">
+            <img src="images\uplode soon.png" alt="Logo design concept" loading="lazy">
+            <figcaption>
+              <h4>UPLOAD SOON</h4>
+              <p></p>
+            </figcaption>
+          </figure>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============ INSTAGRAM POSTERS ============ -->
+    <section class="gallery-section" id="posters">
+      <div class="container">
+        <h2 class="section-title reveal" data-reveal>Instagram Posters/flyers</h2>
+        <h3>gospel posters</h3>
+        <br>
+        <div class="gallery-grid" data-gallery>
+
+          <figure class="gallery-item zoom-item reveal" data-reveal data-category="posters" data-lightbox>
+            <!-- Change project image -->
+            <img src="images\insta poster 1.jpeg" alt="Instagram poster design one" loading="lazy">
+            <figcaption>
+              <h4>Sunday Service — Bold Typography</h4>
+              <p>A bold Sunday service poster combining strong typography with a clean green and white colour palette.
+The speaker image is integrated into the composition to create a clear visual focus.
+Designed for engaging and easy-to-read church event promotion.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item zoom-item reveal" data-reveal data-category="posters" data-lightbox style="--delay:0.1s">
+            <img src="images\insta poster 9.jpeg" alt="Instagram poster design two" loading="lazy">
+            <figcaption>
+              <h4>Sunday Service — Clean Editorial Design</h4>
+              <p>A clean Sunday service poster designed with a balanced layout and fresh green colour palette.
+Large typography and structured information create a clear visual hierarchy.
+Designed to communicate the service details in a simple and elegant way.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item zoom-item reveal" data-reveal data-category="posters" data-lightbox style="--delay:0.2s">
+            <img src="images\sunday poster 5.png" alt="Instagram poster design three" loading="lazy">
+            <figcaption>
+              <h4>Sunday Service — Dynamic Red</h4>
+              <p>A vibrant Sunday service poster built around bold red tones and expressive typography.
+Layered text and geometric elements create energy while keeping the speaker as the focal point.
+Designed to create strong visual impact for digital promotion.</p>
+            </figcaption>
+          </figure>
+        </div>
+
+
+
+        <div class="gallery-grid" data-gallery>
+
+          <figure class="gallery-item zoom-item reveal" data-reveal data-category="posters" data-lightbox>
+            <!-- Change project image -->
+            <img src="images\sunday poster 8.png" alt="Instagram poster design one" loading="lazy">
+            <figcaption>
+              <h4>Sunday Service — Vibrant Blue</h4>
+              <p>A vibrant Sunday service poster combining blue, purple, and white tones for a modern visual style.
+The speaker portrait and layered graphic elements create depth and movement.
+Designed to capture attention while presenting the service information clearly.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item zoom-item reveal" data-reveal data-category="posters" data-lightbox style="--delay:0.1s">
+            <img src="images\sunday poster 10.png" alt="Instagram poster design two" loading="lazy">
+            <figcaption>
+              <h4>Sunday Service — Nature & Faith</h4>
+              <p>A Sunday service poster combining natural mountain imagery with a deep green colour palette.
+The layered landscape and typography create a peaceful and faith-centered atmosphere.
+Designed to communicate a sense of worship, hope, and spiritual connection.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item zoom-item reveal" data-reveal data-category="posters" data-lightbox style="--delay:0.2s">
+            <img src="images\sunday poster 11.png" alt="Instagram poster design three" loading="lazy">
+            <figcaption>
+              <h4>Sunday Service — Blue & Gold</h4>
+              <p>A dynamic Sunday service poster featuring a blue, purple, and gold colour combination.
+Bold typography, geometric lighting, and the speaker portrait create a strong promotional composition.
+Designed for an energetic and attention-grabbing digital presentation.</p>
+            </figcaption>
+          </figure>
+        </div>
+
+      <h3>Restaurant flyers</h3>
+        <br>
+        <div class="gallery-grid" data-gallery>
+
+          <figure class="gallery-item zoom-item reveal" data-reveal data-category="posters" data-lightbox>
+            <!-- Change project image -->
+            <img src="images\restorent poster 1.png" alt="Restaurant flyer design one" loading="lazy">
+            <figcaption>
+              <h4>Tasty Heaven — Burger Promotion</h4>
+              <p>A bold restaurant promotional poster designed to showcase a delicious burger offer.
+Combines strong typography, vibrant food imagery, and a warm orange-black colour palette.
+Designed to create visual impact while clearly communicating the discount and ordering details.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item zoom-item reveal" data-reveal data-category="posters" data-lightbox style="--delay:0.1s">
+            <img src="images\uplode soon.png" alt="Restaurant flyer design two" loading="lazy">
+            <figcaption>
+              <h4>UPLOAD ZOON</h4>
+              <p></p>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item zoom-item reveal" data-reveal data-category="posters" data-lightbox style="--delay:0.2s">
+            <img src="images\uplode soon.png" alt="Restaurant flyer design three" loading="lazy">
+            <figcaption>
+              <h4>UPLOAD SOON</h4>
+              <p></p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+<!-- ============ Commercial & Product Designs ============ -->
+
+    <section class="gallery-section" id="photo-frames">
+      <div class="container">
+        <h2 class="section-title reveal" data-reveal>Commercial & Product Designs</h2>
+      
+        <br>
+        <div class="gallery-grid" data-gallery>
+
+          <figure class="gallery-item zoom-item reveal" data-reveal data-category="posters" data-lightbox>
+            <!-- Change project image -->
+            <img src="images\bmw poster.png" alt="Instagram poster design one" loading="lazy">
+            <figcaption>
+              <h4>BMW M4 Competition — Performance Campaign</h4>
+              <p>A premium automotive advertising poster designed for the BMW M4 Competition, combining bold typography, monochromatic styling, and a powerful product-focused composition.
+The layout highlights the vehicle’s performance and key specifications while maintaining a clean, modern visual hierarchy.
+Created in Photoshop as a self-directed concept inspired by high-end automotive advertising.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item zoom-item reveal" data-reveal data-category="posters" data-lightbox style="--delay:0.1s">
+            <img src="images\porsche poster.png" alt="Instagram poster design two" loading="lazy">
+            <figcaption>
+              <h4>Porsche 718 Cayman GT4 — Automotive Campaign Concept</h4>
+              <p>A premium automotive poster concept created for the Porsche 718 Cayman GT4.
+Designed around a bold black-and-yellow visual system with dynamic typography and performance-focused details.
+Created as a personal design project to explore automotive advertising and visual composition.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item zoom-item reveal" data-reveal data-category="posters" data-lightbox style="--delay:0.2s">
+            <img src="images\uplode soon.png" alt="Bible verse frame design three" loading="lazy">
+            <figcaption>
+              <h4>UPLOAD SOON</h4>
+              <p></p>
+            </figcaption>
+          </figure>
+        </div>
+
+        <br>
+        <div class="gallery-grid" data-gallery>
+
+          <figure class="gallery-item zoom-item reveal" data-reveal data-category="posters" data-lightbox>
+            <!-- Change project image -->
+            <img src="images\uplode soon.png" alt="Instagram poster design one" loading="lazy">
+            <figcaption>
+              <h4>UPLOAD SOON</h4>
+              <p></p>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item zoom-item reveal" data-reveal data-category="posters" data-lightbox style="--delay:0.1s">
+            <img src="images\uplode soon.png" alt="Birthday frame design two" loading="lazy">
+            <figcaption>
+              <h4>UPLOAD SOON</h4>
+              <p></p>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item zoom-item reveal" data-reveal data-category="posters" data-lightbox style="--delay:0.2s">
+            <img src="images\uplode soon.png" alt="Bible verse frame design three" loading="lazy">
+            <figcaption>
+              <h4>UPLOAD ZOON</h4>
+              <p></p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+<!-- ============ photo frames ============ -->
+
+    <section class="gallery-section" id="photo-frames">
+      <div class="container">
+        <h2 class="section-title reveal" data-reveal>Photo Frame designs</h2>
+        <h3>Bible verse</h3>
+        <br>
+        <div class="gallery-grid" data-gallery>
+
+          <figure class="gallery-item zoom-item reveal" data-reveal data-category="posters" data-lightbox>
+            <!-- Change project image -->
+            <img src="images\gospel frame 2.png" alt="Instagram poster design one" loading="lazy">
+            <figcaption>
+              <h4>The Lord Is My Shepherd</h4>
+              <p>A peaceful Bible verse photo frame inspired by <b>Psalm 23:1</b>.
+Designed with a warm, minimal composition and pastoral imagery.
+Created to bring a calm and faith-centered atmosphere to any space.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item zoom-item reveal" data-reveal data-category="posters" data-lightbox style="--delay:0.1s">
+            <img src="images\gospel frame 1.png" alt="Instagram poster design two" loading="lazy">
+            <figcaption>
+              <h4>Faith Can Move Mountains</h4>
+              <p>A bold Bible verse frame inspired by <b>Matthew 17:20</b>.
+Combines expressive typography with vibrant mountain imagery to emphasize faith and strength.
+Designed as an uplifting visual reminder for everyday inspiration.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item zoom-item reveal" data-reveal data-category="posters" data-lightbox style="--delay:0.2s">
+            <img src="images\gospel frame 3.png" alt="Bible verse frame design three" loading="lazy">
+            <figcaption>
+              <h4>You Are the Light of the World</h4>
+              <p>A modern Bible verse photo frame inspired by <b>Matthew 5:14</b>.
+Uses dramatic lighting, bold typography, and a globe-inspired visual to represent hope and guidance.
+Designed to create a meaningful and inspiring visual statement.</p>
+            </figcaption>
+          </figure>
+        </div>
+
+        <h3>Birthday frames</h3>
+        <br>
+        <div class="gallery-grid" data-gallery>
+
+          <figure class="gallery-item zoom-item reveal" data-reveal data-category="posters" data-lightbox>
+            <!-- Change project image -->
+            <img src="images\birthday frame 1.jpg" alt="Instagram poster design one" loading="lazy">
+            <figcaption>
+              <h4>Birthday Photo Frame — Floral Celebration</h4>
+              <p>A decorative birthday photo frame combining floral elements, portrait composition, and elegant typography.
+Designed with a soft, celebratory visual style to highlight the birthday subject.
+Created as a personalized social-media and event photo frame design.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item zoom-item reveal" data-reveal data-category="posters" data-lightbox style="--delay:0.1s">
+            <img src="images\uplode soon.png" alt="Birthday frame design two" loading="lazy">
+            <figcaption>
+              <h4>UPLOAD SOON</h4>
+              <p></p>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item zoom-item reveal" data-reveal data-category="posters" data-lightbox style="--delay:0.2s">
+            <img src="images\uplode soon.png" alt="Bible verse frame design three" loading="lazy">
+            <figcaption>
+              <h4>UPLOAD SOON</h4>
+              <p></p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- ============ YOUTUBE THUMBNAILS ============ -->
+    <section class="gallery-section" id="thumbnails">
+      <div class="container">
+        <h2 class="section-title reveal" data-reveal>YouTube Thumbnails</h2>
+        <div class="gallery-grid thumb-grid" data-gallery>
+
+          <figure class="gallery-item reveal" data-reveal data-category="posters" data-lightbox>
+            <!-- Change project image -->
+            <img src="images\august 1.png" alt="YouTube thumbnail design one" loading="lazy">
+            <figcaption>
+              <h4>Word of Encouragement — YouTube Thumbnail - 1</h4>
+              <p>A cinematic YouTube thumbnail designed to create a strong visual focus and attract viewer attention.
+Combines bold gold typography, portrait composition, lighting effects, and a dark premium background.
+Designed for a Christian encouragement and message-based YouTube video.</p><br>
+<p><b>Workflow: Photoshop + AI-assisted for enhanced visual appeal</b></p>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item reveal" data-reveal data-category="posters" data-lightbox style="--delay:0.1s">
+            <img src="images\sep 1.png" alt="YouTube thumbnail design two" loading="lazy">
+            <figcaption>
+              <h4>Word of Encouragement — YouTube Thumbnail - 2</h4>
+              <p>A cinematic YouTube thumbnail designed to create a strong visual focus and attract viewer attention.
+Combines bold gold typography, portrait composition, lighting effects, and a dark premium background.
+Designed for a Christian encouragement and message-based YouTube video.</p><br>
+<p><b>Workflow: Photoshop + AI-assisted for enhanced visual appeal</p>
+            </figcaption>
+          </figure>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BRANDING PROJECTS ============ -->
+      
+
+    <!-- ============ CTA STRIP ============ -->
+    <section class="cta-strip">
+      <div class="container cta-inner reveal" data-reveal>
+        <h2>Like what you see?</h2>
+        <a href="contact.html" class="btn btn-primary ripple" data-magnetic><span>Start a Project</span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close preview">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <img src="" alt="" id="lightboxImage" class="lightbox-image">
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-mark">S.</span>
+        <span class="logo-word">santhosh</span>
+        <p>Visual design, video editing, 3D craft &amp; web development.</p>
+      </div>
+
+      <div class="footer-links">
+        <h5>Quick Links</h5>
+        <a href="index.html">Home</a>
+        <a href="graphics.html">Graphics Design</a>
+        <a href="video.html">Video Editing</a>
+        <a href="webdev.html">Web Development</a>
+        <a href="modeling.html">3D Modeling</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <div class="footer-social">
+        <h5>Follow</h5>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/v_san_thosh/?hl=en" aria-label="Instagram" class="social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="https://www.youtube.com/@SanthoshSanthosh-l7y" aria-label="YouTube" class="social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="4"/><polygon points="10 9 15 12 10 15 10 9"/></svg></a>
+          <a href="https://www.linkedin.com/in/santhosh26122006/" aria-label="LinkedIn" class="social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 014 0v4M12 13v4"/></svg></a>
+          <a href="#" aria-label="Behance" class="social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h6M2 12h8M2 16h8M15 8h6M14 12h8M14 16a3 3 0 100-6"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <p>&copy; <span id="year"></span> Santhosh. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ============ BACK TO TOP ============ -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script src="js/script.js"></script>
+  <script src="js/gallery.js"></script>
+
+</body>
+</html>

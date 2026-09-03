@@ -1,0 +1,30 @@
+<!-- ============ 3D ANIMATION ============ -->
+    <section class="gallery-section" id="animation">
+      <div class="container">
+        <h2 class="section-title reveal" data-reveal>3D Animation</h2>
+        <div class="video-grid three-col" data-gallery>
+
+          <figure class="video-card reveal" data-reveal data-category="animation">
+            <div class="video-wrap">
+              <div class="yt-embed-wrap" data-yt-key="anim-1"></div>
+            </div>
+            <figcaption><h4>Behind the Scenes</h4><p>Timelapse of the modeling and lighting workflow.</p></figcaption>
+          </figure>
+
+          <figure class="video-card reveal" data-reveal data-category="animation" style="--delay:0.1s">
+            <div class="video-wrap">
+              <div class="yt-embed-wrap" data-yt-key="anim-2"></div>
+            </div>
+            <figcaption><h4>Wireframe Turntable</h4><p>360° wireframe rotation showing topology and edge flow.</p></figcaption>
+          </figure>
+
+          <figure class="video-card reveal" data-reveal data-category="animation" style="--delay:0.2s">
+            <div class="video-wrap">
+              <div class="yt-embed-wrap" data-yt-key="anim-3"></div>
+            </div>
+            <figcaption><h4>Clay Render Pass</h4><p>Neutral clay-shaded pass used to check form before texturing.</p></figcaption>
+          </figure>
+
+        </div>
+      </div>
+    </section>

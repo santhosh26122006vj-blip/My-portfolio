@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- ============ THEME (applied before first paint to avoid a white/dark flash) ============ -->
+  <script>
+    (function () {
+      // Dark is the site's default look. It only stays light if the
+      // visitor previously flipped the toggle to light themselves.
+      var saved = localStorage.getItem('portfolio-theme');
+      if (saved !== 'light') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+
+  <!-- ============ META / SEO ============ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Modeling — Santhosh</title>
+  <meta name="description" content="3D modeling portfolio by Santhosh: product renders, clay studies, wireframes and short 3D animations.">
+  <meta name="keywords" content="3D modeling portfolio, Blender artist, product render, clay render, 3D animation">
+  <meta name="author" content="Santhosh">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="3D Modeling — Santhosh">
+  <meta property="og:description" content="Product renders, clay studies, wireframes and short 3D animations.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/og-image.jpg"> <!-- Change social preview image -->
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/favicon.png"> <!-- Change favicon -->
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body data-page="modeling">
+
+  <!-- ============ PRELOADER ============ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-inner">
+      <img src="images/logo.png" alt="Logo" class="preloader-mark">
+      <p class="preloader-text">loading portfolio<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+    </div>
+  </div>
+
+  <!-- ============ SCROLL PROGRESS BAR ============ -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- ============ CUSTOM CURSOR ============ -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+
+      <a href="index.html" class="nav-logo" aria-label="Santhosh home">
+  <img src="images/logo.png" alt="Santhosh logo" class="nav-logo-img">
+</a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="graphics.html" class="nav-link">Graphics Design</a>
+        <a href="video.html" class="nav-link">Video Editing</a>
+        <a href="webdev.html" class="nav-link">Web Development</a>
+        <a href="modeling.html" class="nav-link active-link">3D Modeling</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+      <a href="index.html" class="mobile-link">Home</a>
+      <a href="graphics.html" class="mobile-link">Graphics Design</a>
+      <a href="video.html" class="mobile-link">Video Editing</a>
+      <a href="webdev.html" class="mobile-link">Web Development</a>
+      <a href="modeling.html" class="mobile-link active-link">3D Modeling</a>
+      <a href="contact.html" class="mobile-link">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ============ PAGE HERO BANNER ============ -->
+    <section class="page-hero">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="gradient-mesh"></div>
+        <div class="glass-shape shape-1"></div>
+        <div class="glass-shape shape-2"></div>
+      </div>
+      <div class="container">
+        <p class="eyebrow reveal" data-reveal>Portfolio</p>
+        <h1 class="page-title reveal" data-reveal>3D Modeling Portfolio</h1>
+        <!-- Change description -->
+        <p class="page-desc reveal" data-reveal>
+          A growing collection of dimensional work — product renders, clay
+          studies and short animations built while learning Blender as a
+          premium add-on skill.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ PROJECT ONE ============ -->
+    <section class="gallery-section" id="project-one">
+      <div class="container">
+        <h2 class="section-title reveal" data-reveal>iPhone — 3D Product Visualization</h2>
+
+        <div class="project-layout reveal" data-reveal data-category="products">
+          <div class="project-renders">
+            <!-- Change project image -->
+            <img src="images\i phone 1.png" alt="3D product render, front angle" loading="lazy" data-lightbox>
+            <img src="images\i phone 2.png" alt="3D product render, side angle" loading="lazy" data-lightbox>
+          </div>
+          <div class="project-details glass-card">
+            <!-- Change description -->
+            <p>A detailed 3D model created with realistic materials, lighting, and product-focused composition.
+Focused on achieving a premium, photorealistic product-rendering look.</p>
+            <ul class="commercial-meta">
+              <li><span>Software</span><strong>Blender</strong></li>
+              <li><span>Poly Count</span><strong>~161.7K tris</strong></li>
+              <li><span>Render Engine</span><strong>Cycles</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECT TWO ============ -->
+    <section class="gallery-section" id="project-two">
+      <div class="container">
+        <h2 class="section-title reveal" data-reveal>Gaming Room — Environment Study</h2>
+
+        <div class="project-layout reveal" data-reveal data-category="environment">
+          <div class="project-renders">
+            <!-- Change project image -->
+            <img src="images\pc desk 1.png" alt="3D environment render, wide angle" loading="lazy" data-lightbox>
+            <img src="images\pc desk 2.png" alt="3D environment render, close angle" loading="lazy" data-lightbox>
+          </div>
+          <div class="project-details glass-card">
+            <!-- Change description -->
+            <p>A stylized gaming room environment created in Blender, focused on composition, lighting, materials, and atmosphere.</p>
+            <ul class="commercial-meta">
+              <li><span>Software</span><strong>Blender</strong></li>
+              <li><span>Poly Count</span><strong>~7.54M tris</strong></li>
+              <li><span>Render Engine</span><strong>Cycles</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section" id="project-two">
+      <div class="container">
+        <h2 class="section-title reveal" data-reveal>BMW — Environment Study</h2>
+
+        <div class="project-layout reveal" data-reveal data-category="environment">
+          <div class="project-renders">
+            <!-- Change project image -->
+            <img src="images\BMW environment render 1.png" alt="3D environment render, wide angle" loading="lazy" data-lightbox>
+            <img src="images\BMW environment render 2.png" alt="3D environment render, close angle" loading="lazy" data-lightbox>
+          </div>
+          <div class="project-details glass-card">
+            <!-- Change description -->
+            <p>An urban automotive scene assembled in Blender, focusing on environment set dressing, mood lighting, and camera composition rendered in Cycles.</p>
+            <ul class="commercial-meta">
+              <li><span>Software</span><strong>Blender</strong></li>
+              <li><span>Poly Count</span><strong>~5.07M tris</strong></li>
+              <li><span>Render Engine</span><strong>Cycles</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section" id="project-two">
+      <div class="container">
+        <h2 class="section-title reveal" data-reveal>Tea Shop — 3D Modeling Study</h2>
+
+        <div class="project-layout reveal" data-reveal data-category="environment">
+          <div class="project-renders">
+            <!-- Change project image -->
+            <img src="images\tea shop output 1.png" alt="3D environment render, wide angle" loading="lazy" data-lightbox>
+            <img src="images\tea shop  output 2.png" alt="3D environment render, close angle" loading="lazy" data-lightbox>
+          </div>
+          <div class="project-details glass-card">
+            <!-- Change description -->
+            <p>A stylized tea shop stall modeled in Blender, focused on 3D modeling, materials, lighting, and presentation.</p>
+            <ul class="commercial-meta">
+              <li><span>Software</span><strong>Blender</strong></li>
+              <li><span>Poly Count</span><strong>~18.7K tris</strong></li>
+              <li><span>Render Engine</span><strong>Cycles</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROCESS GALLERY ============ -->
+    <section class="gallery-section" id="process">
+      <div class="container">
+        <h2 class="section-title reveal" data-reveal>Process &amp; Viewport Screenshots</h2>
+        <div class="gallery-grid" data-gallery>
+
+          <figure class="gallery-item reveal" data-reveal data-category="products" data-lightbox>
+            <!-- Change project image -->
+            <img src="images\wireframe SS.png" alt="Wireframe viewport screenshot" loading="lazy">
+            <figcaption><h4>Wireframe View</h4><p>Base mesh topology shown in the Blender viewport.</p></figcaption>
+          </figure>
+
+          <figure class="gallery-item reveal" data-reveal data-category="products" data-lightbox style="--delay:0.1s">
+            <img src="images\gray render.png" alt="Clay render viewport screenshot" loading="lazy">
+            <figcaption><h4>Clay Render</h4><p>Monochrome clay view highlighting the scene composition, forms, and overall geometry.</p></figcaption>
+          </figure>
+
+          <figure class="gallery-item reveal" data-reveal data-category="environment" data-lightbox style="--delay:0.2s">
+            <img src="images\viewport SS.png" alt="Blender viewport screenshot" loading="lazy">
+            <figcaption><h4>Viewport Screenshot</h4><p>Blender viewport showing the assembled environment during the scene setup process.</p></figcaption>
+          </figure>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA STRIP ============ -->
+    <section class="cta-strip">
+      <div class="container cta-inner reveal" data-reveal>
+        <h2>Curious about a 3D add-on for your project?</h2>
+        <a href="contact.html" class="btn btn-primary ripple" data-magnetic><span>Get in Touch</span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close preview">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <img src="" alt="" id="lightboxImage" class="lightbox-image">
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-mark">S.</span>
+        <span class="logo-word">santhosh</span>
+        <p>Visual design, video editing, 3D craft &amp; web development.</p>
+      </div>
+
+      <div class="footer-links">
+        <h5>Quick Links</h5>
+        <a href="index.html">Home</a>
+        <a href="graphics.html">Graphics Design</a>
+        <a href="video.html">Video Editing</a>
+        <a href="webdev.html">Web Development</a>
+        <a href="modeling.html">3D Modeling</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <div class="footer-social">
+        <h5>Follow</h5>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/v_san_thosh/?hl=en" aria-label="Instagram" class="social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="https://www.youtube.com/@SanthoshSanthosh-l7y" aria-label="YouTube" class="social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="4"/><polygon points="10 9 15 12 10 15 10 9"/></svg></a>
+          <a href="https://www.linkedin.com/in/santhosh26122006/" aria-label="LinkedIn" class="social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 014 0v4M12 13v4"/></svg></a>
+          <a href="#" aria-label="Behance" class="social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h6M2 12h8M2 16h8M15 8h6M14 12h8M14 16a3 3 0 100-6"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <p>&copy; <span id="year"></span> Santhosh. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ============ BACK TO TOP ============ -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script src="js/script.js"></script>
+  <script src="js/videos.js"></script>
+  <script src="js/gallery.js"></script>
+
+</body>
+</html>

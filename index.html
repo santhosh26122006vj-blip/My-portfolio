@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- ============ THEME (applied before first paint to avoid a white/dark flash) ============ -->
+  <script>
+    (function () {
+      // Dark is the site's default look. It only stays light if the
+      // visitor previously flipped the toggle to light themselves.
+      var saved = localStorage.getItem('portfolio-theme');
+      if (saved !== 'light') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+
+  <!-- ============ META / SEO ============ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Santhosh — Visual Designer, Video Editor &amp; Web Developer</title>
+  <meta name="description" content="Santhosh is a creative visual designer and web developer specializing in graphic design, video editing, motion graphics, 3D modeling and AI-assisted web development. Explore a portfolio built on brand identity, cinematic edits, dimensional storytelling and modern web builds.">
+  <meta name="keywords" content="graphic designer, video editor, motion designer, 3D artist, web developer, brand designer, portfolio">
+  <meta name="author" content="Santhosh">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Santhosh — Visual Designer, Video Editor & Web Developer">
+  <meta property="og:description" content="Graphic design, video editing, motion graphics, 3D modeling and web development portfolio.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/og-image.jpg"> <!-- Change social preview image -->
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/favicon.png"> <!-- Change favicon -->
+
+  <!-- Fonts: Syne (display) / Inter (body) / JetBrains Mono (data & captions) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body data-page="home">
+
+  <!-- ============ WELCOME SCREEN (shown once per visit, home page only) ============ -->
+  <div class="welcome-screen" id="welcomeScreen" aria-hidden="true">
+    <div class="welcome-bg">
+      <span class="welcome-orb welcome-orb-1"></span>
+      <span class="welcome-orb welcome-orb-2"></span>
+      <span class="welcome-grid"></span>
+    </div>
+    <div class="welcome-inner">
+      <div class="welcome-logo-wrap">
+        <img src="images/logo.png" alt="Santhosh logo" class="welcome-logo">
+        <span class="welcome-logo-ring"></span>
+      </div>
+      <h1 class="welcome-title"><span>Welcome<span class="text-gradient">.</span></span></h1>
+      <p class="welcome-sub">Santhosh — Visual Design &amp; Web Development</p>
+      <div class="welcome-loader">
+        <div class="welcome-loader-track"><span class="welcome-loader-bar" id="welcomeLoaderBar"></span></div>
+        <span class="welcome-loader-percent" id="welcomeLoaderPercent">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PRELOADER ============ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-inner">
+      <img src="images/logo.png" alt="Logo" class="preloader-mark">
+      <p class="preloader-text">loading portfolio<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+    </div>
+  </div>
+
+  <!-- ============ SCROLL PROGRESS BAR ============ -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- ============ CUSTOM CURSOR ============ -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo" aria-label="Santhosh home">
+  <img src="images/logo.png" alt="Santhosh logo" class="nav-logo-img">
+</a>
+
+      <!-- Desktop Nav -->
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html" class="nav-link active-link">Home</a>
+        <a href="graphics.html" class="nav-link">Graphics Design</a>
+        <a href="video.html" class="nav-link">Video Editing</a>
+        <a href="webdev.html" class="nav-link">Web Development</a>
+        <a href="modeling.html" class="nav-link">3D Modeling</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+      <a href="index.html" class="mobile-link active-link">Home</a>
+      <a href="graphics.html" class="mobile-link">Graphics Design</a>
+      <a href="video.html" class="mobile-link">Video Editing</a>
+      <a href="webdev.html" class="mobile-link">Web Development</a>
+      <a href="modeling.html" class="mobile-link">3D Modeling</a>
+      <a href="contact.html" class="mobile-link">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ============ HERO SECTION ============ -->
+    <section class="hero" id="hero">
+
+      <!-- Animated gradient + floating glass shapes background -->
+      <div class="hero-bg" aria-hidden="true">
+        <div class="gradient-mesh"></div>
+        <div class="glass-shape shape-1"></div>
+        <div class="glass-shape shape-2"></div>
+        <div class="glass-shape shape-3"></div>
+        <div class="grain"></div>
+      </div>
+
+      <div class="hero-inner container">
+
+        <!-- Left: Profile -->
+        <div class="hero-visual reveal" data-reveal>
+          <div class="hero-photo-frame">
+            <!-- Change profile image -->
+            <img src="images\profile image.png" alt="Portrait of Santhosh" class="hero-photo">
+            <div class="frame-ring"></div>
+            <div class="frame-glow"></div>
+          </div>
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            Available for freelance work
+          </div>
+
+          <!-- Tools I know — drop your icon files into images/tools/ and
+               point each src at them; nothing else needs to change. -->
+          <div class="hero-tools reveal" data-reveal>
+            <p class="hero-tools-label">Tools I Use</p>
+            <div class="hero-tools-grid">
+              <div class="tool-item">
+                <span class="tool-icon"><img src="images\Adobe_Photoshop_CC_icon.svg" alt="Photoshop icon"></span>
+                <span class="tool-name">Photoshop</span>
+              </div>
+              <div class="tool-item">
+                <span class="tool-icon"><img src="images\adobe-illustrator-icon.png" alt="Illustrator icon"></span>
+                <span class="tool-name">Illustrator</span>
+              </div>
+              <div class="tool-item">
+                <span class="tool-icon"><img src="images\adobe-premiere-pro-icon.png" alt="Premiere Pro icon"></span>
+                <span class="tool-name">PremierePro</span>
+              </div>
+              <div class="tool-item">
+                <span class="tool-icon"><img src="images\69f192c41d5ab74e58b321149b280b57.png" alt="Blender icon"></span>
+                <span class="tool-name">Blender</span>
+              </div>
+              <div class="tool-item">
+                <span class="tool-icon"><img src="images\code.png" alt="Coding icon"></span>
+                <span class="tool-name">Frontend</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Copy -->
+        <div class="hero-copy">
+          <p class="eyebrow reveal" data-reveal>Portfolio / 2026</p>
+
+          <!-- Change heading -->
+          <h1 class="hero-title reveal" data-reveal>
+            Hi, I'm <span class="text-gradient">Santhosh</span>
+          </h1>
+
+          <!-- Animated typing effect target -->
+          <p class="hero-typed">
+            <span id="typedText"></span><span class="typed-cursor">|</span>
+          </p>
+
+          <!-- Change description -->
+          <p class="hero-desc reveal" data-reveal>
+            I turn ideas into compelling visuals and digital experiences 
+            through graphic design, video editing, motion, 3D and web design — combining creativity, 
+            technology and attention to detail to create work that feels bold, polished, purposeful and memorable.
+          </p>
+
+          <div class="hero-actions reveal" data-reveal>
+            <a href="graphics.html" class="btn btn-primary ripple" data-magnetic>
+              <span>View Portfolio</span>
+            </a>
+            <a href="images\Santhosh_Resume.pdf" class="btn btn-glass ripple" data-magnetic download> <!-- Change resume file -->
+              <span>Download Resume</span>
+            </a>
+            <a href="contact.html" class="btn btn-ghost ripple" data-magnetic>
+              <span>Contact Me</span>
+            </a>
+          </div>
+
+          <div class="hero-meta reveal" data-reveal>
+            <span>Graphic Designer</span>
+            <span class="dot-sep">•</span>
+            <span>Video Editor</span>
+            <span class="dot-sep">•</span>
+            <span>Motion Designer</span>
+            <span class="dot-sep">•</span>
+            <span>3D Artist</span>
+            <span class="dot-sep">•</span>
+            <span>Web Developer</span>
+          </div>
+        </div>
+      </div>
+
+      <a href="#skills" class="scroll-hint" aria-label="Scroll to explore">
+        <span class="scroll-hint-line"></span>
+        scroll
+      </a>
+    </section>
+
+    <!-- ============ CLIENT LOGO MARQUEE ============ -->
+
+    <!-- ============ SKILLS SECTION ============ -->
+    <section class="skills" id="skills">
+      <div class="container">
+        <p class="eyebrow reveal center" data-reveal>What I Do</p>
+        <h2 class="section-title reveal center" data-reveal>Four crafts, one eye for detail</h2>
+
+        <div class="skills-grid">
+
+          <article class="glass-card tilt-card reveal" data-reveal data-tilt>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+            </div>
+            <h3>Graphics Designing</h3>
+            <p>Logos, posters, thumbnails and full brand systems — designed with intention, from concept sketch to final export.</p>
+            <a href="graphics.html" class="card-link ripple">Explore Graphics <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="glass-card tilt-card reveal" data-reveal data-tilt style="--delay:0.1s">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+            </div>
+            <h3>Video Editing</h3>
+            <p>Colour graded cinematics, punchy reels and commercial cuts — edited to hold attention and tell a clear story.</p>
+            <a href="video.html" class="card-link ripple">Explore Video <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="glass-card tilt-card reveal" data-reveal data-tilt style="--delay:0.3s">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+            </div>
+            <h3>Web Development</h3>
+            <p>Fast, modern websites built with the help of AI-accelerated workflows — while I own the design, UX and final result.</p>
+            <a href="webdev.html" class="card-link ripple">Explore Web Dev <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="glass-card tilt-card reveal" data-reveal data-tilt style="--delay:0.2s">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l9 5v10l-9 5-9-5V7l9-5z"/><path d="M3 7l9 5 9-5M12 22V12"/></svg>
+            </div>
+            <h3>3D Modeling</h3>
+            <p>Product renders, clay studies and short dimensional animations — a growing craft added to the visual toolkit.</p>
+            <a href="modeling.html" class="card-link ripple">Explore 3D <span aria-hidden="true">→</span></a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICES SECTION ============ -->
+    <section class="services" id="services">
+      <div class="container">
+        <p class="eyebrow reveal center" data-reveal>Services</p>
+        <h2 class="section-title reveal center" data-reveal>How I can help your brand</h2>
+
+        <div class="services-grid">
+
+          <div class="service-card reveal" data-reveal>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>
+            </div>
+            <h4>Graphic Design</h4>
+            <p>Posters, social creatives and print-ready layouts built around a clear message.</p>
+          </div>
+
+          <div class="service-card reveal" data-reveal style="--delay:0.05s">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 10l5-3v10l-5-3"/><rect x="1" y="6" width="14" height="12" rx="2"/></svg>
+            </div>
+            <h4>Video Editing</h4>
+            <p>Timeline-driven storytelling with clean cuts, sound design and pacing that fits the platform.</p>
+          </div>
+
+          <div class="service-card reveal" data-reveal style="--delay:0.1s">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 17l6-6-6-6M12 19h8"/></svg>
+            </div>
+            <h4>Motion Graphics</h4>
+            <p>Animated titles, logo stings and kinetic type that give a project a signature motion identity.</p>
+          </div>
+
+          <div class="service-card reveal" data-reveal style="--delay:0.15s">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12l2-8h14l2 8-9 9-9-9z"/></svg>
+            </div>
+            <h4>Branding</h4>
+            <p>Logo systems, colour palettes and guidelines that keep a brand consistent everywhere it shows up.</p>
+          </div>
+
+          <div class="service-card reveal" data-reveal style="--delay:0.2s">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l9 5v10l-9 5-9-5V7l9-5z"/></svg>
+            </div>
+            <h4>3D Modeling</h4>
+            <p>Dimensional renders and short 3D intros used as a premium add-on for select projects.</p>
+          </div>
+
+          <div class="service-card reveal" data-reveal style="--delay:0.25s">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <h4>Social Media Design</h4>
+            <p>Templated post systems and reels covers designed to keep a feed cohesive and on-brand.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT SECTION ============ -->
+    <section class="about" id="about">
+      <div class="container about-grid">
+
+        <div class="about-visual reveal" data-reveal>
+          <!-- Change profile image -->
+          <img src="images\pc work.jpg" alt="Santhosh working at a design desk" class="about-photo">
+          <div class="about-frame-glow"></div>
+        </div>
+
+        <div class="about-copy">
+          <p class="eyebrow reveal" data-reveal>About Me</p>
+          <!-- Change heading -->
+          <h2 class="section-title reveal" data-reveal>Design that started as a favour, and became a craft</h2>
+
+          <!-- Change description -->
+          <p class="about-text reveal" data-reveal>
+            I picked up Photoshop and Illustrator through a relative years before I
+            treated it as a career — church posters, small edits, favours for
+            friends. That early groundwork turned into a real practice: today I'm
+            a third-year BCA student building a freelance path around graphic
+            design and video editing, with 3D modeling and AI-assisted web
+            development growing alongside it as newer specialties. Every
+            project, big or small, gets the same attention to detail.
+          </p>
+
+          <div class="counters reveal" data-reveal>
+            <div class="counter-item">
+              <span class="counter" data-target="20">0</span><span class="counter-suffix">+</span>
+              <p>Projects Completed</p>
+            </div>
+            <div class="counter-item">
+              <span class="counter" data-target="10">0</span><span class="counter-suffix">+</span>
+              <p>Clients</p>
+            </div>
+            <div class="counter-item">
+              <span class="counter" data-target="1">0</span>
+              <p>Years Experience</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ TIMELINE SECTION ============ -->
+    <section class="timeline-section" id="timeline">
+      <div class="container">
+        <p class="eyebrow reveal center" data-reveal>Journey</p>
+        <h2 class="section-title reveal center" data-reveal>Where the work has taken me</h2>
+
+        <div class="timeline">
+
+          <div class="timeline-item reveal" data-reveal>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content glass-card">
+              <span class="timeline-year">2025</span>
+              <h4>The Beginning</h4>
+              <p class="timeline-org">Design Foundations</p>
+              <p>Started my creative journey while working in an office, developing my skills in Photoshop and Illustrator alongside my BCA studies through hands-on projects and continuous self-learning.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal" data-reveal>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content glass-card">
+              <span class="timeline-year">2025</span>
+              <h4>First Client Work</h4>
+              <p class="timeline-org">Church & Community Design</p>
+              <p>Started creating posters, sermon graphics, thumbnails and presentation visuals for church and community projects, turning practice into real-world experience.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal" data-reveal>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content glass-card">
+              <span class="timeline-year">2026</span>
+              <h4>Video Editing & Visual Storytelling</h4>
+              <p class="timeline-org">Premiere Pro</p>
+              <p>Expanded beyond static design into video editing with Premiere Pro, exploring cinematic editing, transitions, color grading and storytelling.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal" data-reveal>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content glass-card">
+              <span class="timeline-year">2026</span>
+              <h4>Exploring the Digital Side</h4>
+              <p class="timeline-org">Motion, 3D & Web Design</p>
+              <p>Continued expanding my creative skill set into motion graphics, Blender 3D and modern web design — bringing together design, technology and visual creativity.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal" data-reveal>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content glass-card">
+              <span class="timeline-year">2026</span>
+              <h4>Building What's Next</h4>
+              <p class="timeline-org">Growing Toward Freelance</p>
+              <p>Currently refining my skills, building a stronger portfolio and working toward becoming a full-time creative freelancer with a versatile digital skill set.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURED PROJECTS ============ -->
+    
+    <!-- ============ TESTIMONIALS ============ -->
+    
+    <!-- ============ CTA STRIP ============ -->
+    <section class="cta-strip">
+      <div class="container cta-inner reveal" data-reveal>
+        <h2>Have a project in mind?</h2>
+        <a href="contact.html" class="btn btn-primary ripple" data-magnetic><span>Let's Talk</span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-mark">S.</span>
+        <span class="logo-word">santhosh</span>
+        <p>Visual design, video editing, 3D craft &amp; web development.</p>
+      </div>
+
+      <div class="footer-links">
+        <h5>Quick Links</h5>
+        <a href="index.html">Home</a>
+        <a href="graphics.html">Graphics Design</a>
+        <a href="video.html">Video Editing</a>
+        <a href="webdev.html">Web Development</a>
+        <a href="modeling.html">3D Modeling</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <div class="footer-social">
+        <h5>Follow</h5>
+        <div class="social-icons">
+          <a href="https://www.instagram.com/v_san_thosh/?hl=en" aria-label="Instagram" class="social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="https://www.youtube.com/@SanthoshSanthosh-l7y" aria-label="YouTube" class="social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="4"/><polygon points="10 9 15 12 10 15 10 9"/></svg></a>
+          <a href="https://www.linkedin.com/in/santhosh26122006/" aria-label="LinkedIn" class="social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 014 0v4M12 13v4"/></svg></a>
+          <a href="#" aria-label="Behance" class="social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h6M2 12h8M2 16h8M15 8h6M14 12h8M14 16a3 3 0 100-6"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <p>&copy; <span id="year"></span> Santhosh. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ============ BACK TO TOP ============ -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script src="js/script.js"></script>
+
+</body>
+</html>

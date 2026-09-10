@@ -1511,3 +1511,7 @@ img, video, iframe, svg { max-width: 100%; }
   .counters { gap: 1.2rem; }
   .counter, .counter-suffix { font-size: 2rem; }
 }
+
+.page-title {
+  white-space: nowrap;
+}

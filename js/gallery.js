@@ -38,11 +38,131 @@ document.addEventListener('DOMContentLoaded', () => {
       return lightboxTriggers.filter((t) => category === null || getCategory(t) === category);
     }
 
+    /* ---- Scroll-wheel zoom + drag-to-pan ---------------------------------
+       scale 1 = fit to screen (the default). The wheel zooms toward the
+       pointer, so the spot under the cursor stays put. Once zoomed in the
+       image can be dragged around; double-click toggles 2x / reset. */
+    const MIN_SCALE = 1;
+    const MAX_SCALE = 6;
+    let scale = 1;
+    let panX = 0;
+    let panY = 0;
+
+    // Small floating hint / zoom readout, injected so no page markup changes.
+    const zoomHint = document.createElement('div');
+    zoomHint.className = 'lightbox-zoom-hint';
+    zoomHint.textContent = 'Scroll to zoom';
+    lightbox.appendChild(zoomHint);
+
+    function applyTransform() {
+      lightboxImage.style.transform =
+        'translate(' + panX + 'px, ' + panY + 'px) scale(' + scale + ')';
+      lightboxImage.classList.toggle('is-zoomed', scale > 1);
+      zoomHint.textContent = scale > 1
+        ? Math.round(scale * 100) + '%  ·  drag to pan'
+        : 'Scroll to zoom';
+    }
+
+    function resetZoom() {
+      scale = 1;
+      panX = 0;
+      panY = 0;
+      lightboxImage.classList.remove('is-panning');
+      applyTransform();
+    }
+
+    // Clamp the pan so the image can never be dragged completely off-screen.
+    function clampPan() {
+      const rect = lightboxImage.getBoundingClientRect();
+      const baseW = rect.width / scale;
+      const baseH = rect.height / scale;
+      const maxX = Math.max(0, (baseW * scale - baseW) / 2);
+      const maxY = Math.max(0, (baseH * scale - baseH) / 2);
+      panX = Math.min(maxX, Math.max(-maxX, panX));
+      panY = Math.min(maxY, Math.max(-maxY, panY));
+    }
+
+    function zoomAt(clientX, clientY, nextScale) {
+      nextScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, nextScale));
+      if (nextScale === scale) return;
+
+      if (nextScale === MIN_SCALE) {
+        resetZoom();
+        return;
+      }
+
+      const rect = lightboxImage.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const ratio = nextScale / scale;
+
+      // Keep the point under the pointer anchored while scaling.
+      panX -= (clientX - centerX) * (ratio - 1);
+      panY -= (clientY - centerY) * (ratio - 1);
+      scale = nextScale;
+
+      clampPan();
+      applyTransform();
+    }
+
+    lightbox.addEventListener('wheel', (e) => {
+      if (!lightbox.classList.contains('open')) return;
+      e.preventDefault();                       // don't scroll the page behind
+      const factor = e.deltaY < 0 ? 1.15 : 1 / 1.15;
+      zoomAt(e.clientX, e.clientY, scale * factor);
+    }, { passive: false });
+
+    // Double-click / double-tap: quick zoom in, or back to fit.
+    lightboxImage.addEventListener('dblclick', (e) => {
+      e.preventDefault();
+      if (scale > 1) resetZoom();
+      else zoomAt(e.clientX, e.clientY, 2);
+    });
+
+    // Drag to pan (mouse, pen and touch via pointer events)
+    let dragging = false;
+    let dragMoved = false;
+    let startX = 0;
+    let startY = 0;
+
+    lightboxImage.addEventListener('pointerdown', (e) => {
+      if (scale <= 1) return;
+      dragging = true;
+      dragMoved = false;
+      startX = e.clientX - panX;
+      startY = e.clientY - panY;
+      lightboxImage.classList.add('is-panning');
+      if (lightboxImage.setPointerCapture) lightboxImage.setPointerCapture(e.pointerId);
+    });
+
+    lightboxImage.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      panX = e.clientX - startX;
+      panY = e.clientY - startY;
+      dragMoved = true;
+      clampPan();
+      applyTransform();
+    });
+
+    function endDrag() {
+      if (!dragging) return;
+      dragging = false;
+      lightboxImage.classList.remove('is-panning');
+    }
+    lightboxImage.addEventListener('pointerup', endDrag);
+    lightboxImage.addEventListener('pointercancel', endDrag);
+
+    // Clicking a zoomed image (to drag it) must never close the lightbox.
+    lightboxImage.addEventListener('click', (e) => {
+      if (scale > 1 || dragMoved) e.stopPropagation();
+    });
+
     function renderItem(item) {
       const img = item.tagName === 'IMG' ? item : item.querySelector('img');
       const title = item.querySelector ? item.querySelector('h4') : null;
       if (!img) return;
 
+      resetZoom();
       lightboxImage.src = img.src;
       lightboxImage.alt = img.alt || '';
       lightboxCaption.textContent = title ? title.textContent : '';
@@ -62,6 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function closeLightbox() {
+      resetZoom();
       lightbox.classList.remove('open');
       lightbox.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
@@ -103,6 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
 
     lightbox.addEventListener('touchend', (e) => {
+      if (scale > 1) return;   // zoomed in: the gesture is a pan, not a swipe
       const dx = e.changedTouches[0].clientX - touchStartX;
       const dy = e.changedTouches[0].clientY - touchStartY;
       // Ignore mostly-vertical swipes so scrolling/closing gestures aren't hijacked

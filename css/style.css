@@ -819,6 +819,20 @@ body.has-custom-cursor .cursor-follower { display: block; }
 .card-link { color: var(--purple-300); font-weight: 600; font-size: 0.9rem; display: inline-flex; gap: 0.3rem; transition: gap var(--t-fast); }
 .card-link:hover { gap: 0.6rem; color: var(--white); }
 
+/* "What I Do" cards: the entire box is the click target, not just the
+   "Explore …" text. The link is stretched over the whole card with a
+   transparent ::after overlay (the card is already position: relative). */
+.skills-grid .tilt-card { cursor: pointer; }
+.skills-grid .card-link { overflow: hidden; }
+.skills-grid .card-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+.skills-grid .tilt-card:hover .card-link { gap: 0.6rem; color: var(--white); }
+body.has-custom-cursor .skills-grid .tilt-card { cursor: none; }
+
 
 /* ==================== 13. SERVICES ==================== */
 .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
